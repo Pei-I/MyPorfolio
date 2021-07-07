@@ -1,13 +1,13 @@
 ### Cyclistic_Exercise_Full_Year_Analysis ###
 
 # This analysis is for case study 1 from the Google Data Analytics Certificate 
-# It°¶s originally based on the case study "'Sophisticated, Clear, and Polished°¶:
+# It‚Äôs originally based on the case study "'Sophisticated, Clear, and Polished‚Äô:
 # Divvy and Data Visualization" written by Kevin Hartman 
 # (found here: https://artscience.blog/home/divvy-dataviz-case-study). 
 # We will be using the Divvy dataset for the case study. 
 # The purpose of this script is to consolidate downloaded Divvy data into a 
 # single dataframe and then conduct simple analysis to help answer the key question:
-# °ßIn what ways do members and casual riders use Divvy bikes differently?°®
+# ‚ÄúIn what ways do members and casual riders use Divvy bikes differently?‚Äù
 
 
 # environment setting
@@ -164,8 +164,9 @@ sqldf('SELECT day_of_week, AVG(ride_length), member_casual
 
 # Notice that the days of the week are out of order. Let's fix that.
 all_trips_v2$day_of_week <- ordered(all_trips_v2$day_of_week, 
-                                    levels=c("¨P¥¡§@", "¨P¥¡§G", "¨P¥¡§T", "¨P¥¡•|", "¨P¥¡§≠", "¨P¥¡§ª", "¨P¥¡§È"))
+                                    levels=c("ÊòüÊúü‰∏Ä", "ÊòüÊúü‰∫å", "ÊòüÊúü‰∏â", "ÊòüÊúüÂõõ", "ÊòüÊúü‰∫î", "ÊòüÊúüÂÖ≠", "ÊòüÊúüÊó•"))
 
+                                           #c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun")
 
 # Compare the number or rides by each day
 count(all_trips_v2, day_of_week)
@@ -204,19 +205,17 @@ V<-all_trips_v2 %>%
             ,average_duration = mean(ride_length)) %>% 
   arrange(member_casual, weekday)  
 
-write.csv(V,'clistic_analysis.csv')
-
 ggplot(data = V, mapping = aes(x = weekday, y = number_of_rides, fill = member_casual))+
   geom_col( position = "dodge")+
   labs(title = "Cyclistic BIKE-SHARE: Weekday VS. Number of Rides", 
-       subtitle = "Comparison of Member Type", 
+       subtitle = "Comparison of Rider Type", 
        caption = "Data collected from https://divvy-tripdata.s3.amazonaws.com/index.html")
 
 
 ggplot(data = V, mapping = aes(x = weekday, y = average_duration, fill = member_casual))+
   geom_col( position = "dodge")+
   labs(title = "Cyclistic BIKE-SHARE: Weekday VS. Avg_Duration", 
-       subtitle = "Comparison of Member Type", 
+       subtitle = "Comparison of Rider Type", 
        caption = "Data collected from https://divvy-tripdata.s3.amazonaws.com/index.html")
 
 
