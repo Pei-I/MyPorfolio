@@ -1,13 +1,13 @@
 ### Cyclistic_Exercise_Full_Year_Analysis ###
 
 # This analysis is for case study 1 from the Google Data Analytics Certificate 
-# It°¶s originally based on the case study "'Sophisticated, Clear, and Polished°¶:
+# It‚Äôs originally based on the case study "'Sophisticated, Clear, and Polished‚Äô:
 # Divvy and Data Visualization" written by Kevin Hartman 
 # (found here: https://artscience.blog/home/divvy-dataviz-case-study). 
 # We will be using the Divvy dataset for the case study. 
 # The purpose of this script is to consolidate downloaded Divvy data into a 
 # single dataframe and then conduct simple analysis to help answer the key question:
-# °ßIn what ways do members and casual riders use Divvy bikes differently?°®
+# ‚ÄúIn what ways do members and casual riders use Divvy bikes differently?‚Äù
 
 
 # environment setting
@@ -164,7 +164,7 @@ sqldf('SELECT day_of_week, AVG(ride_length), member_casual
 
 # Notice that the days of the week are out of order. Let's fix that.
 all_trips_v3$day_of_week <- ordered(all_trips_v3$day_of_week, 
-                                    levels=c("¨P¥¡§@", "¨P¥¡§G", "¨P¥¡§T", "¨P¥¡•|", "¨P¥¡§≠", "¨P¥¡§ª", "¨P¥¡§È"))
+                                    levels=c("ÊòüÊúü‰∏Ä", "ÊòüÊúü‰∫å", "ÊòüÊúü‰∏â", "ÊòüÊúüÂõõ", "ÊòüÊúü‰∫î", "ÊòüÊúüÂÖ≠", "ÊòüÊúüÊó•"))
 
 
 # Compare the number of rides by each day
@@ -196,11 +196,6 @@ sqldf('SELECT day_of_week weekday, COUNT(*) number_of_rides, AVG(ride_length) av
          FROM all_trips_v3  
         GROUP BY day_of_week, member_casual') #try sqldf pkg
 
-# Notice that the days of the week are out of order. Let's fix that.
-
-V$weekday <- ordered(V$weekday, levels=c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))
-
-
 # Assign a name for the analyzed data frame
 
 V<-all_trips_v3 %>% 
@@ -210,6 +205,9 @@ V<-all_trips_v3 %>%
             ,average_duration = mean(ride_length)) %>% 
   arrange(member_casual, weekday)  
 
+# Notice that the days of the week are out of order. Let's fix that.
+
+V$weekday <- ordered(V$weekday, levels=c("Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"))
 
 
 # Visualize the number of rides by rider type
